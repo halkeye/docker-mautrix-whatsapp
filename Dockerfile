@@ -4,5 +4,8 @@ RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && curl -sL https:
 RUN chmod 0755 /tmp/mautrix-whatsapp
 
 FROM debian:12.5-slim AS runtime
+RUN apt-get update && apt-get install -y \
+    ca-certificates=20230311 \
+ && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /tmp/mautrix-whatsapp /usr/bin/mautrix-whatsapp
 ENTRYPOINT ["/usr/bin/mautrix-whatsapp"]
