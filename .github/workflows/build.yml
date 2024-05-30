@@ -58,7 +58,7 @@ jobs:
           context: .
           push: true
           build-args: |
-            WHATSAPP_VERSION=${{ env.WHATSAPP_VERSION }}
+            MAUTRIX_WHATSAPP_VERSION=${{ env.MAUTRIX_WHATSAPP_VERSION }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
