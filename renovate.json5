@@ -1,13 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>halkeye/halkeye//.github/renovate/base.json5",
+    "github>halkeye/halkeye//.github/renovate/base.json5"
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^Dockerfile$"],
-      "matchStrings": ["ENV WHATSAPP_VERSION=(?<currentValue>.*?)\\n"],
+      "fileMatch": ["^.github/workflows/build.yml$"],
+      "matchStrings": ["MAUTRIX_WHATSAPP_VERSION: (?<currentValue>.*?)\\n"],
       "depNameTemplate": "mautrix/whatsapp",
       "datasourceTemplate": "github-releases",
     }

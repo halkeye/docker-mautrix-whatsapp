@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  MAUTRIX_WHATSAPP_VERSION: 0.10.7
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -36,8 +39,12 @@ jobs:
         uses: docker/metadata-action@f7b4ed12385588c3f9bc252f0a2b520d83b52d48
         with:
           images: "ghcr.io/${{ github.repository }}"
+          labels: |
+            org.opencontainers.image.source=https://github.com/mautrix/whatsapp
+            org.opencontainers.image.url=https://github.com/mautrix/whatsapp
+            org.opencontainers.image.revision=v${{env.MAUTRIX_WHATSAPP_VERSION}}
           tags: |
-            type=raw,value=1.0.${{ github.run_number }}
+            type=raw,value=${{env.MAUTRIX_WHATSAPP_VERSION}}-${{ github.run_number }}
             type=ref,event=branch
             type=ref,event=pr
             type=sha
@@ -50,6 +57,8 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            WHATSAPP_VERSION=${{ env.WHATSAPP_VERSION }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
