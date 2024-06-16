@@ -1,6 +1,6 @@
 FROM curlimages/curl:8.8.0 AS builder
 ARG TARGETPLATFORM
-ARG MAUTRIX_WHATSAPP_VERSION=0.10.7
+ARG MAUTRIX_WHATSAPP_VERSION=0.10.8
 RUN DOCKER_ARCH=$(case ${TARGETPLATFORM:-linux/amd64} in \
     "linux/amd64")   echo "amd64"  ;; \
     "linux/arm/v7")  echo "arm64"   ;; \
