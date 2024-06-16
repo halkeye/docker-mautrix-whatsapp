@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  MAUTRIX_WHATSAPP_VERSION: 0.10.7
+  MAUTRIX_WHATSAPP_VERSION: 0.10.8
 
 jobs:
   docker:
