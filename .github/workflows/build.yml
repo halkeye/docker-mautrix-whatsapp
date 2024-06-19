@@ -50,7 +50,7 @@ jobs:
             - name: Create tag
 
       - name: Create tag
-        uses: actions/github-script@v5
+        uses: actions/github-script@211cb3fefb35a799baa5156f9321bb774fe56294 # v5
         with:
           script: |
             github.rest.git.createRef({
@@ -75,7 +75,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@a74c6b72af54cfa997e81df42d94703d6313a2d0 # v2
         with:
           make_latest: true
           generate_release_notes: true
