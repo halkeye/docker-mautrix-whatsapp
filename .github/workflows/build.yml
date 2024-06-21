@@ -56,7 +56,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: `refs/tags/${process.env.MAUTRIX_WHATSAPP_VERSION}-${ github.event.number }`,
+              ref: `refs/tags/${process.env.MAUTRIX_WHATSAPP_VERSION}-${process.env.GITHUB_RUN_NUMBER}`,
               sha: context.sha
             })
 
