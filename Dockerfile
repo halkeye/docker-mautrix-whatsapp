@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
   ca-certificates=20230311 \
   gettext-base=0.21-12 \
   && rm -rf /var/lib/apt/lists/*
+COPY --from=mwader/static-ffmpeg:7.0.2 /ffmpeg /usr/local/bin/
+COPY --from=mwader/static-ffmpeg:7.0.2 /ffprobe /usr/local/bin/
 COPY --from=builder /tmp/mautrix-whatsapp /usr/bin/mautrix-whatsapp
 USER 1337
 ENTRYPOINT ["/usr/bin/mautrix-whatsapp"]
