@@ -1,6 +1,6 @@
 FROM curlimages/curl:8.12.1 AS builder
 ARG TARGETPLATFORM
-ARG UPSTREAM_VERSION=v0.11.3
+ARG UPSTREAM_VERSION=v0.11.4
 RUN DOCKER_ARCH=$(case ${TARGETPLATFORM:-linux/amd64} in \
   "linux/amd64")   echo "amd64"  ;; \
   "linux/arm/v7")  echo "arm64"   ;; \
@@ -12,7 +12,7 @@ RUN chmod 0755 /tmp/mautrix-whatsapp
 # just test the download
 RUN /tmp/mautrix-whatsapp --help
 
-FROM debian:12.9-slim AS runtime
+FROM debian:12.10-slim AS runtime
 RUN apt-get update && apt-get install -y \
   ca-certificates=20230311 \
   gettext-base=0.21-12 \
