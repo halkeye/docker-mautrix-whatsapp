@@ -12,7 +12,7 @@ RUN chmod 0755 /tmp/mautrix-whatsapp
 # just test the download
 RUN /tmp/mautrix-whatsapp --help
 
-FROM debian:12.11-slim AS runtime
+FROM debian:13.0-slim AS runtime
 RUN apt-get update && apt-get install -y \
   ca-certificates=20230311 \
   gettext-base=0.21-12 \
