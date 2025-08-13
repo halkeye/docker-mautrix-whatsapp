@@ -12,10 +12,15 @@ RUN chmod 0755 /tmp/mautrix-whatsapp
 # just test the download
 RUN /tmp/mautrix-whatsapp --help
 
-FROM debian:13.0-slim AS runtime
+FROM debian:trixie-slim AS runtime
+# renovate: suite=trixie depName=gcc-11
+ENV CA_CERTIFICATES_VERSION="ca-certificates"
+# renovate: suite=trixie depName=gcc-11
+ENV GETTEXT_BASE_VERSION="0.21-12"
+
 RUN apt-get update && apt-get install -y \
-  ca-certificates=20230311 \
-  gettext-base=0.21-12 \
+  ca-certificates="${CA_CERTIFICATES_VERSION}" \
+  gettext-base=${GETTEXT_BASE_VERSION} \
   && rm -rf /var/lib/apt/lists/*
 COPY --from=mwader/static-ffmpeg:7.1.1 /ffmpeg /usr/local/bin/
 COPY --from=mwader/static-ffmpeg:7.1.1 /ffprobe /usr/local/bin/
