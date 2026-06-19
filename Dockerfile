@@ -1,6 +1,6 @@
 FROM curlimages/curl:8.20.0 AS builder
 ARG TARGETPLATFORM
-ARG UPSTREAM_VERSION=v0.2605.0
+ARG UPSTREAM_VERSION=v0.2606.0
 RUN DOCKER_ARCH=$(case ${TARGETPLATFORM:-linux/amd64} in \
   "linux/amd64")   echo "amd64"  ;; \
   "linux/arm/v7")  echo "arm64"   ;; \
@@ -25,8 +25,8 @@ RUN apt-get update && apt-get install -y \
   libasprintf0v5=${LIBASPRINTF_VERSION} \
   gettext-base=${GETTEXT_BASE_VERSION} \
   && rm -rf /var/lib/apt/lists/*
-COPY --from=mwader/static-ffmpeg:8.1.1 /ffmpeg /usr/local/bin/
-COPY --from=mwader/static-ffmpeg:8.1.1 /ffprobe /usr/local/bin/
+COPY --from=mwader/static-ffmpeg:8.1.2 /ffmpeg /usr/local/bin/
+COPY --from=mwader/static-ffmpeg:8.1.2 /ffprobe /usr/local/bin/
 COPY --from=builder /tmp/mautrix-whatsapp /usr/bin/mautrix-whatsapp
 USER 1337
 ENTRYPOINT ["/usr/bin/mautrix-whatsapp"]
